@@ -115,6 +115,22 @@ function useUpload() {
 
   return [upload, { loading }];
 }
+export const useHandleStreamResponse = ({ onChunk, onFinish }) => {
+  return async (response) => {
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder("utf-8");
+    let text = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      text += decoder.decode(value);
+      onChunk(text);
+    }
+
+    onFinish(text);
+  };
+};
 
 // /src/utilities/runtime-helpers.js
 export const someHelper = () => {
