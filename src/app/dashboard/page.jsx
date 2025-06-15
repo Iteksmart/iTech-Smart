@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-
 import { useHandleStreamResponse } from "../utilities/runtime-helpers";
 
 function MainComponent() {
