@@ -115,6 +115,7 @@ function useUpload() {
 
   return [upload, { loading }];
 }
+// ✅ Keep this ONE clean definition
 export const useHandleStreamResponse = ({ onChunk, onFinish }) => {
   return async (response) => {
     const reader = response.body.getReader();
@@ -132,10 +133,6 @@ export const useHandleStreamResponse = ({ onChunk, onFinish }) => {
   };
 };
 
-// /src/utilities/runtime-helpers.js
-export const someHelper = () => {
-  console.log("runtime helper stub");
-};
 
 
 export {
